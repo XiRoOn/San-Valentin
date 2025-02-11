@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Andrea ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+        .hearts {
+            font-size: 30px;
+            animation: float 1.5s infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .yes-btn, .option-btn {
+            background: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .no-btn {
+            background: gray;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="message">
+        <h2>Andrea, eres lo mejor que me ha pasado en la vida. Te amo con todo mi corazón. ❤️</h2>
+        <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt="Amor infinito" width="200">
+        <button class="yes-btn" onclick="showQuestion()">Te Amo ❤️</button>
+    </div>
+
+    <div class="card hidden" id="question">
+        <h2>¿Quieres ser mi San Valentín? ❤️</h2>
+        <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Romance" width="200">
+        <div class="buttons">
+            <button class="yes-btn" onclick="showLoveResponse()">Sí</button>
+            <button class="no-btn" onclick="showThinkAgain()">No</button>
+        </div>
+    </div>
+
+    <div class="card hidden" id="thinkAgain">
+        <h2>¿Estás segura, mi amor? Piénsalo bien... ❤️</h2>
+        <img src="https://media.giphy.com/media/l0HUpt2s9Pclgt9Vm/giphy.gif" alt="Pensando en ti" width="200">
+        <button class="yes-btn" onclick="showQuestion()">Volver</button>
+    </div>
+
+    <div class="card hidden" id="loveResponse">
+        <h2>Sabía que dirías que sí, mi amor. ❤️</h2>
+        <img src="https://media.giphy.com/media/3ohc0W5FfG4x4TjOg0/giphy.gif" alt="Pareja feliz" width="200">
+        <button class="yes-btn" onclick="showDinnerOptions()">¿Qué quieres cenar? 🍽️</button>
+    </div>
+
+    <div class="card hidden" id="dinnerOptions">
+        <h2>¿Qué quieres cenar en esta noche especial? 🍽️</h2>
+        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cena romántica" width="200">
+        <div class="buttons">
+            <button class="option-btn" onclick="showFinalMessage('hamburguesas')">1️⃣ Hamburguesas</button>
+            <button class="option-btn" onclick="showFinalMessage('pizza')">2️⃣ Pizza</button>
+            <button class="option-btn" onclick="showFinalMessage('otra cosa')">3️⃣ Otra cosa</button>
+        </div>
+    </div>
+
+    <div class="card hidden" id="finalMessage">
+        <h2 id="finalText"></h2>
+        <img src="https://media.giphy.com/media/f9XgHHnPnDjOF1hT8T/giphy.gif" alt="Amor eterno" width="200">
+    </div>
+
+    <script>
+        function showQuestion() {
+            document.getElementById('message').classList.add('hidden');
+            document.getElementById('question').classList.remove('hidden');
+        }
+        
+        function showThinkAgain() {
+            document.getElementById('question').classList.add('hidden');
+            document.getElementById('thinkAgain').classList.remove('hidden');
+        }
+        
+        function showLoveResponse() {
+            document.getElementById('question').classList.add('hidden');
+            document.getElementById('loveResponse').classList.remove('hidden');
+        }
+
+        function showDinnerOptions() {
+            document.getElementById('loveResponse').classList.add('hidden');
+            document.getElementById('dinnerOptions').classList.remove('hidden');
+        }
+
+        function showFinalMessage(choice) {
+            document.getElementById('dinnerOptions').classList.add('hidden');
+            document.getElementById('finalText').innerText = choice === 'otra cosa' ? 
+                'OK, mi amor, cenaremos lo que tú quieras. 💖' : 
+                `OK, mi amor, hoy cenaremos ${choice}. 💖`;
+            document.getElementById('finalMessage').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
